@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "catppuccin-mocha",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -81,5 +81,10 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+    -- vim.api.nvim_set_hl(
+    --   0, -- global highlight group
+    --   "SpellBad",
+    --   { fg = "lightred", underline = true }
+    -- )
   end,
 }
