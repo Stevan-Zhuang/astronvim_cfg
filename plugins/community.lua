@@ -8,6 +8,8 @@ return {
   { import = "astrocommunity.indent.indent-blankline-nvim" },
   { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   { import = "astrocommunity.note-taking.obsidian-nvim" },
+  { import = "astrocommunity.completion.copilot-lua" },
+  { import = "astrocommunity.completion.copilot-lua-cmp" },
   -- { import = "astrocommunity.markdown-and-latex.vimtex" },
   -- { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.rust" },

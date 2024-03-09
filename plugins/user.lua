@@ -26,30 +26,6 @@ return {
     },
     init = function() require("todo-comments").setup() end,
   },
-  --[[
-  {
-    "Exafunction/codeium.vim",
-    event = "BufEnter",
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-l>", function() return vim.fn["codeium#Accept"]() end, { expr = true, silent = true })
-      vim.keymap.set(
-        "i",
-        "<C-j>",
-        function() return vim.fn["codeium#CycleCompletions"](1) end,
-        { expr = true, silent = true }
-      )
-      vim.keymap.set(
-        "i",
-        "<C-k>",
-        function() return vim.fn["codeium#CycleCompletions"](-1) end,
-        { expr = true, silent = true }
-      )
-      vim.keymap.set("i", "<c-h>", function() return vim.fn["codeium#Clear"]() end, { expr = true, silent = true })
-      vim.keymap.set("i", "<C-f>", function() return vim.fn["codeium#Chat"]() end, { expr = true, silent = true })
-    end,
-  },
-  --]]
   {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
@@ -64,6 +40,21 @@ return {
       "folke/trouble.nvim",
       "nvim-telescope/telescope.nvim",
     },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    -- branch = "main",
+    event = "User AstroFile",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = false, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
   },
   {
     "alexghergh/nvim-tmux-navigation",
@@ -82,34 +73,4 @@ return {
     end,
   },
   { "xiyaowong/transparent.nvim", init = function() require("transparent").setup() end },
-  -- {
-  --  "preservim/vim-markdown",
-  --  event = "VeryLazy",
-  --  require = { "godlygeek/tabular" },
-  --},
-  --[[
-  {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
-    dependencies = { "honza/vim-snippets" },
-
-    config = function(plugin, opts)
-      -- include the default astronvim config that calls the setup call
-      require "plugins.configs.luasnip"(plugin, opts)
-      -- load snippets paths
-      require("luasnip.loaders.from_lua").lazy_load {
-        -- this can be used if your configuration lives in ~/.config/nvim
-        -- if your configuration lives in ~/.config/astronvim, the full path
-        -- must be specified in the next line
-        paths = { "./lua/user/snippets" },
-      }
-      require("luasnip").config.set_config {
-        enable_autosnippets = true,
-      }
-    end,
-  },
-  --]]
 }
