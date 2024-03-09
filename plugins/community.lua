@@ -5,8 +5,6 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.indent.indent-blankline-nvim" },
-  { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   { import = "astrocommunity.note-taking.obsidian-nvim" },
   { import = "astrocommunity.completion.copilot-lua" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
