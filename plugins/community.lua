@@ -8,8 +8,6 @@ return {
   { import = "astrocommunity.note-taking.obsidian-nvim" },
   { import = "astrocommunity.completion.copilot-lua" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
-  -- { import = "astrocommunity.markdown-and-latex.vimtex" },
-  -- { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.cpp" },
