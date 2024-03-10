@@ -10,6 +10,34 @@ return {
   --   end,
   -- },
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    ---@type CatppuccinOptions
+    opts = {
+      transparent_background = false,
+      integrations = {
+        alpha = true,
+        aerial = true,
+        dap = true,
+        dap_ui = true,
+        mason = true,
+        neotree = true,
+        notify = true,
+        nvimtree = false,
+        semantic_tokens = true,
+        symbols_outline = true,
+        telescope = true,
+        ts_rainbow = false,
+        which_key = true,
+      },
+      custom_highlights = function(colors)
+        return {
+          LineNr = { fg = colors.overlay0 },
+        }
+      end,
+    },
+  },
+  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && yarn install",
@@ -27,34 +55,19 @@ return {
     init = function() require("todo-comments").setup() end,
   },
   {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "pass openai/api_key",
-      }
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
-    -- branch = "main",
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
     event = "User AstroFile",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-    },
     opts = {
-      debug = false, -- Enable debugging
-      -- See Configuration section for rest
+      suggestion = {
+        auto_trigger = true,
+        debounce = 150,
+        keymap = {
+          accept = "<C-f>",
+          dismiss = "<C-x>",
+        },
+      },
     },
-    -- See Commands section for default commands if you want to lazy load on them
   },
   {
     "alexghergh/nvim-tmux-navigation",
@@ -72,5 +85,64 @@ return {
       }
     end,
   },
-  { "xiyaowong/transparent.nvim", init = function() require("transparent").setup() end },
+  {
+    "epwalsh/obsidian.nvim",
+    -- the obsidian vault in this default config  ~/obsidian-vault
+    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
+    -- event = { "bufreadpre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+    event = { "BufReadPre  */obsidian-vault/*.md" },
+    keys = {
+      {
+        "gf",
+        function()
+          if require("obsidian").util.cursor_on_markdown_link() then
+            return "<cmd>ObsidianFollowLink<CR>"
+          else
+            return "gf"
+          end
+        end,
+        noremap = false,
+        expr = true,
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {
+      dir = vim.env.HOME .. "/obsidian-vault", -- specify the vault location. no need to call 'vim.fn.expand' here
+      use_advanced_uri = true,
+      finder = "telescope.nvim",
+      mappings = {},
+
+      templates = {
+        subdir = "templates",
+        date_format = "%Y-%m-%d-%a",
+        time_format = "%H:%M",
+      },
+
+      note_frontmatter_func = function(note)
+        -- This is equivalent to the default frontmatter function.
+        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+        -- `note.metadata` contains any manually added fields in the frontmatter.
+        -- So here we just make sure those fields are kept in the frontmatter.
+        if note.metadata ~= nil and require("obsidian").util.table_length(note.metadata) > 0 then
+          for k, v in pairs(note.metadata) do
+            out[k] = v
+          end
+        end
+        return out
+      end,
+
+      -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+      -- URL it will be ignored but you can customize this behavior here.
+      follow_url_func = vim.ui.open or require("astronvim.utils").system_open,
+    },
+  },
+  {
+    "folke/trouble.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }
