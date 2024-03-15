@@ -34,7 +34,7 @@ return {
       },
       mappings = {
         close = "q", -- Close chat
-        reset = "<C-l>", -- Clear the chat buffer
+        reset = "<C-n>", -- Clear the chat buffer
         complete = "<Tab>", -- Change to insert mode and press tab to get the completion
         submit_prompt = "<CR>", -- Submit question to Copilot Chat
         accept_diff = "<C-a>", -- Accept the diff

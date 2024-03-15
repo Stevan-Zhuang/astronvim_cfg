@@ -70,6 +70,21 @@ return {
     },
   },
   {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup {
+        api_key_cmd = "pass openai/api_key",
+      }
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
+  {
     "alexghergh/nvim-tmux-navigation",
     config = function()
       require("nvim-tmux-navigation").setup {
@@ -139,11 +154,6 @@ return {
       -- URL it will be ignored but you can customize this behavior here.
       follow_url_func = vim.ui.open or require("astronvim.utils").system_open,
     },
-  },
-  {
-    "folke/trouble.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
