@@ -104,9 +104,10 @@ return {
         "Explain",
         "FixError",
         "Suggestion",
-        "Annotations",
         "Refactor",
         "Tests",
+        "Annotations",
+        "FixDiagnostic",
         "Commit",
         "CommitStaged",
       }
