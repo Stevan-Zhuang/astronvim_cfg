@@ -166,7 +166,7 @@ return {
           -- require("CopilotChat.code_actions").show_prompt_actions()
           vim.cmd "CopilotActions"
         end,
-        desc = " CopilotChat - Prompt actions",
+        desc = " Prompt actions",
         mode = { "n", "v", "x" },
       },
     },
