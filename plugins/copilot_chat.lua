@@ -21,7 +21,7 @@ return {
       name = "CopilotChat", -- Name to use in chat
       separator = "---", -- Separator to use in chat
       window = {
-        layout = "float", -- 'vertical', 'horizontal', 'float'
+        layout = "vertical", -- 'vertical', 'horizontal', 'float'
         relative = "editor", -- 'editor', 'win', 'cursor', 'mouse'
         border = "rounded", -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
         width = 0.8, -- fractional width of parent
